@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { SearchbarStyled, SearchForm, SearchFormButton, SearchFormInput } from "./Searchbar.styled";
 import {BiSearchAlt2} from 'react-icons/bi';
+import toast from 'react-hot-toast';
 
 export class Searchbar extends Component {
     state = {
@@ -14,7 +15,8 @@ export class Searchbar extends Component {
     submitForm = e => {
         e.preventDefault();
         if (this.state.searchValue.trim() === '') {
-            console.log('Error');
+            toast.error("Please enter a search query.");
+            return
         }
 
         this.props.onSubmit(this.state.searchValue);
